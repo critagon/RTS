@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61666d15f9a2e34aa122b1b0395165a, type: 3}
+  m_Name: Barracks
+  m_EditorClassIdentifier: 
+  code: barracks
+  unitName: Barracks
+  description: 
+  healthpoints: 500
+  prefab: {fileID: 6215363435305957453, guid: ca8f194ac7b9be845a1d842bec6d6287, type: 3}
+  cost:
+  - code: wood
+    amount: 100
