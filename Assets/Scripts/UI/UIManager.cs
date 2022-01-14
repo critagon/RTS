@@ -15,21 +15,31 @@ public class UIManager : MonoBehaviour
     public Transform resourcesUIParent;
     public GameObject gameResourceDisplayPrefab;
 
+    public Transform selectionDisplayParent;
+    public GameObject selectionDisplayPrefab;
+
     Dictionary<string, Text> resourceText;
 
+    //Transform mainCanvas;
     Transform healthbarCanvas;
     #endregion
     #region Setup
     private void OnEnable()
     {
-        EventManager.AddListener("UpdateResourceTexts", OnUpdateResourceText);
-        EventManager.AddListener("CheckBuildingButtons", OnCheckBuildingButtons);
+        EventManager.AddTypedListener("UpdateResourceTexts", OnUpdateResourceText);
+        EventManager.AddTypedListener("CheckBuildingButtons", OnCheckBuildingButtons);
+
+        EventManager.AddTypedListener("SelectUnit", OnSelectUnit);
+        EventManager.AddTypedListener("DeselectUnit", OnDeselectUnit);
     }
 
     private void OnDisable()
     {
-        EventManager.RemoveListener("UpdateResourceTexts", OnUpdateResourceText);
-        EventManager.RemoveListener("CheckBuildingButtons", OnCheckBuildingButtons);
+        EventManager.RemoveTypedListener("UpdateResourceTexts", OnUpdateResourceText);
+        EventManager.RemoveTypedListener("CheckBuildingButtons", OnCheckBuildingButtons);
+
+        EventManager.RemoveTypedListener("SelectUnit", OnSelectUnit);
+        EventManager.RemoveTypedListener("DeselectUnit", OnDeselectUnit);
     }
 
     void Awake()
@@ -76,7 +86,7 @@ public class UIManager : MonoBehaviour
     #endregion
     #endregion
 
-    #region Display Update
+    #region Resource and Building Display Update
     void AddBuildingButtonListener(Button b, int i)
     {
         b.onClick.AddListener(() => buildingPlacer.PreparePlacedBuilding(i)); //still triggers with spacebar?
@@ -87,7 +97,7 @@ public class UIManager : MonoBehaviour
         resourceText[resource].text = value.ToString();
     }
 
-    public void OnUpdateResourceText()
+    public void OnUpdateResourceText(CustomEventData unitData)
     {
         foreach (KeyValuePair<string, GameResource> pair in Globals.GAME_RESOURCES)
         {
@@ -95,7 +105,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OnCheckBuildingButtons()
+    public void OnCheckBuildingButtons(CustomEventData unitData)
     {
         foreach (BuildingData data in Globals.BUILDING_DATA)
         {
@@ -104,7 +114,57 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    void Update()
+    #region Selection Display
+
+    private void OnSelectUnit(CustomEventData unitData)
+    {
+        AddSelectedUnitToSelectionDisplay(unitData.unit);
+    }
+
+    private void OnDeselectUnit(CustomEventData unitData)
+    {
+        RemoveSelectedUnitFromSelectionDisplay(unitData.unit.Code);
+    }
+
+    public void AddSelectedUnitToSelectionDisplay(Unit unit)
+    {
+        // if there is another unit of the same type already selected,
+        // increase the counter
+        Transform alreadyInstantiatedChild = selectionDisplayParent.Find(unit.Code);
+        if (alreadyInstantiatedChild != null)
+        {
+            Text text = alreadyInstantiatedChild.Find("Count").GetComponent<Text>();
+            int count = int.Parse(text.text);
+            text.text = (count + 1).ToString();
+        }
+        // else create a brand new counter initialized with a count of 1
+        else
+        {
+            GameObject getGameObject = Instantiate(selectionDisplayPrefab) as GameObject;
+            getGameObject.name = unit.Code;
+            Transform getTransform = getGameObject.transform;
+            getTransform.Find("Count").GetComponent<Text>().text = "1";
+            getTransform.Find("Name").GetComponent<Text>().text = unit.unitData.unitName;
+            getTransform.SetParent(selectionDisplayParent);
+        }
+    }
+
+    public void RemoveSelectedUnitFromSelectionDisplay(string code)
+    {
+        Transform listItem = selectionDisplayParent.Find(code);
+        if (listItem == null) return;
+        Text text = listItem.Find("Count").GetComponent<Text>();
+        int count = int.Parse(text.text);
+        count -= 1;
+        if (count == 0)
+            DestroyImmediate(listItem.gameObject);
+        else
+            text.text = count.ToString();
+    }
+
+#endregion
+
+void Update()
     {
         if (Globals.SomethingSelected() == true)
         {
@@ -112,6 +172,7 @@ public class UIManager : MonoBehaviour
         }
         else healthbarCanvas.gameObject.SetActive(false);
     }
+
 }
 
 

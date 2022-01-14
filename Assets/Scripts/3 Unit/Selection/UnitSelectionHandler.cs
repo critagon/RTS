@@ -19,12 +19,12 @@ public class UnitSelectionHandler : SelectionFunctions
 
     #region MessyCode
     
-    void IsPlacingBuildingCannotSelect()
+    void IsPlacingBuildingCannotSelect(CustomEventData unitData)
     {
         isNotPlacingBuilding = false;
     }
 
-    void IsNotPlacingBuildingCanSelect()
+    void IsNotPlacingBuildingCanSelect(CustomEventData unitData)
     {
         isNotPlacingBuilding = true;
     }
@@ -45,8 +45,8 @@ public class UnitSelectionHandler : SelectionFunctions
             isABuilding = true;
         }
 
-        EventManager.AddListener("isPlacingBuilding", IsPlacingBuildingCannotSelect);
-        EventManager.AddListener("isNotPlacingBuilding", IsNotPlacingBuildingCanSelect);
+        EventManager.AddTypedListener("isPlacingBuilding", IsPlacingBuildingCannotSelect);
+        EventManager.AddTypedListener("isNotPlacingBuilding", IsNotPlacingBuildingCanSelect);
     }
     #endregion
 

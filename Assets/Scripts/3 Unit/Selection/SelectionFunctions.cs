@@ -4,6 +4,7 @@ using UnityEngine;
 public class SelectionFunctions : MonoBehaviour
 {
     Dictionary<int, GameObject> selectedUnits = Globals.SELECTED_UNITS;
+    protected virtual Unit Unit { get; set; }
 
     #region Selection
     public void Select1(GameObject selection)
@@ -14,6 +15,8 @@ public class SelectionFunctions : MonoBehaviour
         {
             Globals.SELECTED_UNITS.Add(id, selection);
         }
+
+        EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
     }
     
     public void ShiftSelect(GameObject selection)
@@ -24,6 +27,8 @@ public class SelectionFunctions : MonoBehaviour
         {
             Globals.SELECTED_UNITS.Add(id, selection); 
         }
+
+        EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
     }
 
     public void MarqueeSelect(GameObject selection)
@@ -34,6 +39,8 @@ public class SelectionFunctions : MonoBehaviour
         {
             Globals.SELECTED_UNITS.Add(id, selection);
         }
+
+        EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
     }
     #endregion
 
@@ -45,11 +52,15 @@ public class SelectionFunctions : MonoBehaviour
         {
             selectedUnits.Remove(id);
         }
+
+        EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
     }
 
     public void DeselectAll()
     {
         selectedUnits.Clear();
+        EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+
         //playerSelected = false;
         //enemySelected = false;
     }

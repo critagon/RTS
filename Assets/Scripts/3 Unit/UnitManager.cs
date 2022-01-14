@@ -83,7 +83,6 @@ public class UnitManager : MonoBehaviour
         transform.Find("HoverCircle").gameObject.SetActive(false);
     }
     #endregion
-
 }
 
 
