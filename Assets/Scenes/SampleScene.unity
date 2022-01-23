@@ -205,7 +205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 178, y: -257}
+  m_AnchoredPosition: {x: 178, y: -228}
   m_SizeDelta: {x: -351, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127622145
@@ -515,6 +515,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca8f194ac7b9be845a1d842bec6d6287, type: 3}
+--- !u!1001 &697217404
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1625002973}
+    m_Modifications:
+    - target: {fileID: 8513516213688331850, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_Name
+      value: AlliedTestCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.6334805
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3500038
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 506}
+  m_AnchoredPosition: {x: 150, y: 468}
   m_SizeDelta: {x: 300, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1205478630
@@ -1273,7 +1330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 208, y: -285}
+  m_AnchoredPosition: {x: 208, y: -239}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221962962
@@ -1497,6 +1554,8 @@ MonoBehaviour:
   buildingButtonPrefab: {fileID: 1876390384253508200, guid: 1c2734ff8e2dafb4c8a04e054ae9ed98, type: 3}
   resourcesUIParent: {fileID: 733481424}
   gameResourceDisplayPrefab: {fileID: 5416423820144269893, guid: 22c2b941f35385e4d84191c30d56c69e, type: 3}
+  selectionDisplayParent: {fileID: 1815574241}
+  selectionDisplayPrefab: {fileID: 5112472009556553969, guid: 70829f6e90039144a829515a3536c0ea, type: 3}
 --- !u!114 &1319315233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1697,6 +1756,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1600050838 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8513516213688331853, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+  m_PrefabInstance: {fileID: 697217404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1625002972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1790,7 @@ Transform:
   m_Children:
   - {fileID: 410761528}
   - {fileID: 1646216222}
+  - {fileID: 1600050838}
   m_Father: {fileID: 1595631801}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1765,7 +1830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -111.5, y: -272}
+  m_AnchoredPosition: {x: -111.5, y: -247}
   m_SizeDelta: {x: -221, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1642521754
@@ -1822,7 +1887,6 @@ GameObject:
   - component: {fileID: 1715667706}
   - component: {fileID: 1715667708}
   - component: {fileID: 1715667707}
-  - component: {fileID: 1715667709}
   - component: {fileID: 1715667710}
   m_Layer: 0
   m_Name: EventSystem
@@ -1879,18 +1943,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &1715667709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715667705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ba5d9a0f0baa924ebade67a13148f55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1715667710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,7 +2025,7 @@ GameObject:
   - component: {fileID: 1815574243}
   - component: {fileID: 1815574242}
   m_Layer: 5
-  m_Name: Selections
+  m_Name: SelectionDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2015,10 +2067,10 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 3
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
+  m_CellSize: {x: 60, y: 100}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2158,7 +2210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207, y: -315}
+  m_AnchoredPosition: {x: 207, y: -270}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977179767

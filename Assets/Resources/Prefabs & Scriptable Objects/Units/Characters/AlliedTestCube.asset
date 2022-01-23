@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d614416a6284c42a21f5e72d6e74c2, type: 3}
+  m_Name: AlliedTestCube
+  m_EditorClassIdentifier: 
+  code: alliedTestCube
+  unitName: AlliedTestCube
+  description: 
+  healthpoints: 100
+  prefab: {fileID: 8513516213688331850, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
+  cost:
+  - code: food
+    amount: 50
