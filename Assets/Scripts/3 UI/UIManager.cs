@@ -121,7 +121,7 @@ public class UIManager : MonoBehaviour
         AddSelectedUnitToSelectionDisplay(unitData.unit);
     }
 
-    private void OnDeselectUnit(CustomEventData unitData)
+    private void OnDeselectUnit(CustomEventData unitData)   
     {
         RemoveSelectedUnitFromSelectionDisplay(unitData.unit.Code);
     }
@@ -130,6 +130,7 @@ public class UIManager : MonoBehaviour
     {
         // if there is another unit of the same type already selected,
         // increase the counter
+        print(selectionDisplayParent);
         Transform alreadyInstantiatedChild = selectionDisplayParent.Find(unit.Code);
         if (alreadyInstantiatedChild != null)
         {

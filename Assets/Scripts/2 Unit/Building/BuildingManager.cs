@@ -19,7 +19,6 @@ public class BuildingManager : UnitManager
     int _nCollisions = 0;
     bool validPlacement;
 
-    [SerializeField] bool _isActive;
     [SerializeField] string whatType = "";
 
     public Transform buildingParent;
@@ -31,7 +30,6 @@ public class BuildingManager : UnitManager
     {
         if (_building == null)
         {
-            _isActive = true;
             whatType = "Pre-placed";
             //how to initialize pre-placed buildings?
         }
@@ -131,7 +129,6 @@ public class BuildingManager : UnitManager
 
         if (_building != null)
         {
-            _isActive = IsActive();
 
             if (_building.isFixed && whatType != "Fixed")
             {

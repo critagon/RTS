@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class CustomEventData
 {
-    UnitData unitData;
+    public UnitData unitData;
     public Unit unit;
 
     public CustomEventData(UnitData unitData)

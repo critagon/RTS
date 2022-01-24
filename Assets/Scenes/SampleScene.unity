@@ -1568,7 +1568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9ab1dd87589cc419244308e253372a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlacingBuilding: 0
 --- !u!1 &1402543822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,9 +1630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d007af904ddadd84995fd2921e19d2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragMarqueeEnabled: 0
-  isHoldingLMBDownCheck: 0
-  marqueedObjects: []
 --- !u!4 &1519570098
 Transform:
   m_ObjectHideFlags: 0
