@@ -186,7 +186,7 @@ public class UnitManager : MonoBehaviour
             Globals.SELECTED_UNITS.Add(id, selection);
         }
 
-        //EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
+        EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
     }
 
         public void ShiftSelect(GameObject selection)
@@ -196,7 +196,7 @@ public class UnitManager : MonoBehaviour
                 Globals.SELECTED_UNITS.Add(id, selection);
             }
 
-            //EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
+            EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
         }
 
         public virtual void MarqueeSelect(GameObject selection)
@@ -206,7 +206,7 @@ public class UnitManager : MonoBehaviour
                 Globals.SELECTED_UNITS.Add(id, selection);
             }
 
-            //EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
+            EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
         }
 
         public void Deselect1(GameObject selection)
@@ -216,13 +216,13 @@ public class UnitManager : MonoBehaviour
                 selectedUnits.Remove(id);
             }
 
-            //EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+            EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
         }
 
         public void DeselectAll()
         {
             selectedUnits.Clear();
-            //EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+            EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
         }
         #endregion
     }
