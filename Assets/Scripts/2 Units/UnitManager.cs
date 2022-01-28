@@ -8,23 +8,17 @@ public class UnitManager : MonoBehaviour
     #region Variables
     protected virtual Unit Unit { get; set; } //? why get set?
 
-    Dictionary<int, GameObject> selectedUnits = Globals.SELECTED_UNITS;
+    protected Dictionary<int, GameObject> selectedUnits = Globals.SELECTED_UNITS;
     public int id;
 
     GameObject hoverObject;
 
-    public virtual bool IsABuilding() //return false than override in building manager? how does that work? doesn't work :(
-    {
-        if (GetComponent<BuildingManager>()) return true;
-        else return false;
-    }
-
-    protected virtual bool IsActive() //protected? virtual? what is a "variable method" called?
+    protected virtual bool IsActive() 
     {
         return true;
     }
 
-    protected bool IsDrawingMarquee()  
+    protected bool IsDrawingMarquee()
     {
         if (MarqueeSelection.isDrawingMarquee == true) return true;
         else return false;
@@ -32,14 +26,14 @@ public class UnitManager : MonoBehaviour
 
     protected virtual bool CanBeSelected()
     {
-        if (IsActive() == false) return false; //require IsABuilding too?
+        if (IsActive() == false) return false; 
         else return true;
     }
 
     public bool isPlacingBuilding;
-   
-    Transform healthbarCanvas; //should I do transform or gameobject?
-    GameObject _healthbar;
+
+    protected Transform healthbarCanvas; 
+    protected GameObject _healthbar;
 
     protected BoxCollider boxCollider;
     #endregion
@@ -73,16 +67,16 @@ public class UnitManager : MonoBehaviour
         isPlacingBuilding = BuildingPlacer.isPlacingBuilding;
         Selecting();
         UpdateUnitDisplay();
-    } 
+    }
 
-    bool isHoveringOver;
+    protected bool isHoveringOver;
 
     void OnMouseEnter()
     {
         isHoveringOver = true;
         hoverObject = transform.gameObject;
     }
-    
+
     void OnMouseExit()
     {
         isHoveringOver = false;
@@ -140,56 +134,47 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    void UpdateUnitDisplay()
+    #region Unit Display
+    protected virtual void UpdateUnitDisplay()
     {
-        //HoverCircle
-        if (isHoveringOver && IsDrawingMarquee() == false && isPlacingBuilding == false && IsABuilding() == false)
-        {
-            transform.Find("HoverCircle").gameObject.SetActive(true);
-        }
-
-        if (!isHoveringOver)
-        {
-            transform.Find("HoverCircle").gameObject.SetActive(false);
-        }
-
-        //SelectionCircle
         if (selectedUnits.ContainsKey(id))
         {
             transform.Find("SelectionCircle").gameObject.SetActive(true);
+            HealthbarCreate();
         }
 
         if (!selectedUnits.ContainsKey(id))
         {
             transform.Find("SelectionCircle").gameObject.SetActive(false);
-        }
-
-        //Healthbar
-        if (selectedUnits.ContainsKey(id) || isHoveringOver && !IsABuilding())
+            HealthbarDestroy();
+        }     
+    }
+    protected void HealthbarCreate()
+    {
+        if (_healthbar == null)
         {
-            if (_healthbar == null)
-            {
-                _healthbar = GameObject.Instantiate(Resources.Load("Prefabs & Scriptable Objects/UI/Healthbar")) as GameObject;
-                healthbarCanvas = GameObject.Find("Healthbars").transform;
-                _healthbar.transform.SetParent(healthbarCanvas);
+            _healthbar = GameObject.Instantiate(Resources.Load("Prefabs & Scriptable Objects/UI/Healthbar")) as GameObject;
+            healthbarCanvas = GameObject.Find("Healthbars").transform;
+            _healthbar.transform.SetParent(healthbarCanvas);
 
-                Healthbar healthbar = _healthbar.GetComponent<Healthbar>();
-                Rect boundingBox = Utilities.GetBoundingBoxOnScreen(transform.Find("Mesh").GetComponent<Renderer>().bounds, Camera.main);
-                healthbar.Initialize(transform, boundingBox.height);
-                healthbar.SetPosition();
+            Healthbar healthbar = _healthbar.GetComponent<Healthbar>();
+            Rect boundingBox = Utilities.GetBoundingBoxOnScreen(transform.Find("Mesh").GetComponent<Renderer>().bounds, Camera.main);
+            healthbar.Initialize(transform, boundingBox.height);
+            healthbar.SetPosition();
 
-                healthbar.name = "Healthbar " + id;
-            }
-        }
-        if (!selectedUnits.ContainsKey(id) && !isHoveringOver)
-        {
-            if (_healthbar != null)
-            {
-                Destroy(_healthbar);
-                _healthbar = null;
-            }
+            healthbar.name = "Healthbar " + id;
         }
     }
+
+    protected void HealthbarDestroy()
+    {
+        if (_healthbar != null)
+        {
+            Destroy(_healthbar);
+            _healthbar = null;
+        }
+    }
+    #endregion
     #endregion
 
     #region Selection Functions
@@ -201,43 +186,45 @@ public class UnitManager : MonoBehaviour
             Globals.SELECTED_UNITS.Add(id, selection);
         }
 
-        EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
+        //EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
     }
 
-    public void ShiftSelect(GameObject selection)
-    {
-        if (!selectedUnits.ContainsKey(id))
+        public void ShiftSelect(GameObject selection)
         {
-            Globals.SELECTED_UNITS.Add(id, selection);
+            if (!selectedUnits.ContainsKey(id))
+            {
+                Globals.SELECTED_UNITS.Add(id, selection);
+            }
+
+            //EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
         }
 
-        EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
-    }
-
-    public void MarqueeSelect(GameObject selection)
-    {
-        if ((!selectedUnits.ContainsKey(id)))
+        public virtual void MarqueeSelect(GameObject selection)
         {
-            Globals.SELECTED_UNITS.Add(id, selection);
+            if ((!selectedUnits.ContainsKey(id)))
+            {
+                Globals.SELECTED_UNITS.Add(id, selection);
+            }
+
+            //EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
         }
 
-        EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
-    }
-
-    public void Deselect1(GameObject selection)
-    {
-        if (selectedUnits.ContainsKey(id))
+        public void Deselect1(GameObject selection)
         {
-            selectedUnits.Remove(id);
+            if (selectedUnits.ContainsKey(id))
+            {
+                selectedUnits.Remove(id);
+            }
+
+            //EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
         }
 
-        EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+        public void DeselectAll()
+        {
+            selectedUnits.Clear();
+            //EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+        }
+        #endregion
     }
 
-    public void DeselectAll()
-    {
-        selectedUnits.Clear();
-        EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
-    }
-    #endregion
-}
+

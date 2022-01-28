@@ -19,14 +19,14 @@ public class Globals
 
     public static Dictionary<int, GameObject> SELECTED_UNITS= new Dictionary<int, GameObject>();
 
-    public static bool SomethingSelected()
+    /*public static bool SomethingSelected()
     {
         if (SELECTED_UNITS.Count > 0)
         {
             return true;
         }
         else return false;
-    }
+    }*/
 }
 
 /****************************************************************************************************************************************************/
@@ -36,7 +36,7 @@ public class GameResource //make into separate script if encounter problems
     string _name;
     int _currentAmount;
 
-    public GameResource(string name, int initialAmount)
+    public GameResource(string name, int initialAmount) //this is a constructor?
     {
         _name = name;
         _currentAmount = initialAmount;
@@ -51,5 +51,5 @@ public class GameResource //make into separate script if encounter problems
 
     public string Name { get => _name; } //necessary?, what is get? help
 
-    public int Amount { get => _currentAmount; }
+    public int Amount { get => _currentAmount; } //this is a property?
 }

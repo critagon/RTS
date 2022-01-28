@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class Unit
 {
-    protected UnitData _unitData;
     protected Transform _transform;
+    protected string uid;
+
+    protected UnitData _unitData;
     protected int _currentHealth;
 
-    protected string uid;
-    protected int level;
+    protected int upgradeLevel;
     protected List<ResourceValue> _production;
 
     public Unit(UnitData unitData) : this(unitData, new List<ResourceValue>() { }) { } //no production
@@ -16,19 +17,19 @@ public class Unit
     public Unit(UnitData unitData, List<ResourceValue> production)
     {
         _unitData = unitData;
-        _currentHealth = unitData.healthpoints;
+        _currentHealth = unitData.HP;
 
         GameObject getGameObject = GameObject.Instantiate(unitData.prefab) as GameObject;
         _transform = getGameObject.transform;
 
         uid = System.Guid.NewGuid().ToString();
-        level = 1;
+        upgradeLevel = 1;
         _production = production;
     }
 
-    public void LevelUp()
+    public void Upgrade()
     {
-        level += 1;
+        upgradeLevel += 1;
     }
 
     public void ProduceResources()
@@ -68,8 +69,8 @@ public class Unit
     public List<ResourceValue> Production { get => _production; }
 
     public int HP { get => _currentHealth; set => _currentHealth = value; }
-    public int MaxHP { get => _unitData.healthpoints; }
+    public int MaxHP { get => _unitData.maxHP; }
 
-    public int Level { get => level; }
+    public int Level { get => upgradeLevel; }
 }
 

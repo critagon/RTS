@@ -5,16 +5,11 @@ public class BuildingManager : UnitManager
 {
     Building _building;
 
-    protected override Unit Unit
+    protected override Unit Unit //what is the purpose of this?
     {
         get { return _building; }
-        set { _building = value is Building ? (Building)value : null; }
+        set { _building = value is Building building ? building : null; } //_building is a building set to building? otherwise set to null
     }
-
-    /*public override bool IsABuilding()
-    {
-        return true;
-    }*/
 
     int _nCollisions = 0;
     bool validPlacement;
@@ -23,7 +18,6 @@ public class BuildingManager : UnitManager
 
     public Transform buildingParent;
 
-    BuildingData buildingData;
     UnitManager unitManager;
 
     private void Awake()

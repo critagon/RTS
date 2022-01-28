@@ -8,7 +8,7 @@ public class CustomEventData
     public UnitData unitData;
     public Unit unit;
 
-    public CustomEventData(UnitData unitData)
+    public CustomEventData(UnitData unitData) //constructor for if we have unitdata but nothing for unit
     {
         this.unitData = unitData;
         this.unit = null;

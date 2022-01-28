@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2d614416a6284c42a21f5e72d6e74c2, type: 3}
-  m_Name: AlliedTestCube
+  m_Script: {fileID: 11500000, guid: a87a528a107ae8d448eb5f64c0c01374, type: 3}
+  m_Name: Terrain Feature
   m_EditorClassIdentifier: 
-  code: alliedTestCube
-  unitName: AlliedTestCube
+  prefab: {fileID: 6527217856501213708, guid: da599a82af0f7484d910ab04f095f999, type: 3}
+  code: Rock1
+  featureName: Rock1
   description: 
-  healthpoints: 100
-  prefab: {fileID: 8513516213688331850, guid: 482c8ad739c77a247ae0756500a08e98, type: 3}
-  cost:
-  - code: food
-    amount: 50
+  HP: 0
+  maxHP: 0

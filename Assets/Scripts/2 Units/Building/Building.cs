@@ -19,7 +19,6 @@ public class Building : Unit
         INVALID,
         FIXED,
         CONSTRUCTING,
-        CONSTRUCTED
     };
 
     public Building(BuildingData buildingData) : this(buildingData, new List<ResourceValue>() { }) { } //no production
@@ -30,7 +29,7 @@ public class Building : Unit
         _buildingData = buildingData;
         buildingManager = _transform.GetComponent<BuildingManager>();
 
-        _currentHealth = buildingData.healthpoints;
+        _currentHealth = buildingData.HP;
 
         _materials = new List<Material>();
         foreach (Material material in _transform.Find("Mesh").GetComponent<Renderer>().materials)
@@ -103,7 +102,6 @@ public class Building : Unit
     public bool isValid { get => _placement == BuildingPlacement.VALID; }
     public bool isFixed { get => _placement == BuildingPlacement.FIXED; }
     public bool isConstructing { get => _placement == BuildingPlacement.CONSTRUCTING; }
-    public bool isConstructed { get => _placement == BuildingPlacement.CONSTRUCTED; }
     #endregion
 
     public int DataIndex
@@ -121,5 +119,8 @@ public class Building : Unit
         }
     }
 }
+
+
+
 
 

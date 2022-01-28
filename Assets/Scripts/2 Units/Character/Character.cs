@@ -12,25 +12,25 @@ public class Character : Unit
         _characterData = characterData;
         characterManager = _transform.GetComponent<CharacterManager>();
 
-        _currentHealth = characterData.healthpoints;
+        _currentHealth = characterData.HP;
     }
 
     public Character(CharacterData characterData) : this(characterData, new List<ResourceValue>()) 
     {
     } //no production
 
-    /*public int DataIndex
+    public int DataIndex
     {
         get
         {
-            for (int i = 0; i < Globals.BUILDING_DATA.Length; i++)
+            for (int i = 0; i < Globals.CHARACTER_DATA.Length; i++)
             {
-                if (Globals.BUILDING_DATA[i].code == _buildingData.code)
+                if (Globals.BUILDING_DATA[i].code == _characterData.code)
                 {
                     return i;
                 }
             }
             return -1;
         }
-    }*/
+    }
 }

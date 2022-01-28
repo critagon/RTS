@@ -68,7 +68,7 @@ public class MarqueeSelection : MonoBehaviour
         foreach (GameObject selection in selectionBox)
         {
             inBounds = selectionBounds.Contains(Camera.main.WorldToViewportPoint(selection.transform.position));
-            bool canMarqueeSelection = !selection.GetComponent<UnitManager>().IsABuilding();
+            bool canMarqueeSelection = !selection.GetComponent<BuildingManager>(); //way to do this through inheritance?
 
             if (inBounds && canMarqueeSelection)
             {
