@@ -132,7 +132,7 @@ public class UIManager : MonoBehaviour
     {
         // if there is another unit of the same type already selected,
         // increase the counter
-        print(unit);
+        print("Unit in UIManager is: " + unit);
         Transform alreadyInstantiatedChild = selectedUnitsListParent.Find(unit.Code);
         if (alreadyInstantiatedChild != null)
         {

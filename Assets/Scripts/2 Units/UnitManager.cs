@@ -6,7 +6,7 @@ public class UnitManager : MonoBehaviour
 {
     #region Setup
     #region Variables
-    public virtual Unit Unit { get; set; } //? why get set?
+    public virtual Unit Unit { get; set; } 
 
     protected Dictionary<int, GameObject> selectedUnits = Globals.SELECTED_UNITS;
     public int id;
@@ -208,7 +208,11 @@ public class UnitManager : MonoBehaviour
 
     public void SelectEvent()
     {
-        EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
+        print("Unit in UnitManager is: " + Unit);
+        if (Unit != null)
+        {
+            EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
+        }
     }
 
     public void Deselect1(GameObject selection)
@@ -231,7 +235,10 @@ public class UnitManager : MonoBehaviour
 
     public void DeselectEvent()
     {
-        EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+        if (Unit != null)
+        {
+            EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+        }
     }
     #endregion
 }

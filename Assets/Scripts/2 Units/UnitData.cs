@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Unit", menuName = "Scriptable Objects", order = 2)]
+[CreateAssetMenu(fileName = "Unit", menuName = "Scriptable Objects/Unit", order = 2)]
 public class UnitData : ScriptableObject
 {
     public GameObject prefab;

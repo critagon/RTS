@@ -5,7 +5,7 @@ public class BuildingManager : UnitManager
 {
     Building _building;
 
-    public override Unit Unit //what is the purpose of this?
+    public override Unit Unit 
     {
         get { return _building; }
         set { _building = value is Building building ? building : null; } //_building is a building set to building? otherwise set to null
@@ -33,6 +33,7 @@ public class BuildingManager : UnitManager
             buildingParent = GameObject.Find("Buildings").transform; 
             transform.SetParent(buildingParent);
         }
+        
     }
 
     public void Initialize(Building building)

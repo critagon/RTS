@@ -18,6 +18,7 @@ public class CustomEventData
     {
         this.unitData = null;
         this.unit = unit;
+        Debug.Log("Unit in CustomEventData is: " + unit);
     }
 }
 
