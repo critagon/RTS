@@ -81,7 +81,7 @@ public class BuildingPlacer: MonoBehaviour
     #region Place Building
     void PlaceBuilding()
     {
-        placedBuilding.Place();
+        placedBuilding.PlaceCost();
         isPlacingBuilding = false;
 
         EventManager.TriggerEvent("UpdateResourceTexts");

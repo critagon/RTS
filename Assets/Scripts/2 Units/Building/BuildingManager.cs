@@ -5,7 +5,7 @@ public class BuildingManager : UnitManager
 {
     Building _building;
 
-    protected override Unit Unit //what is the purpose of this?
+    public override Unit Unit //what is the purpose of this?
     {
         get { return _building; }
         set { _building = value is Building building ? building : null; } //_building is a building set to building? otherwise set to null

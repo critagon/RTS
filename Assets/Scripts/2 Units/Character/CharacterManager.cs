@@ -7,7 +7,7 @@ public class CharacterManager : UnitManager
     public Transform parent;
     Character _character;
 
-    protected override Unit Unit //what is the purpose of this?
+    public override Unit Unit //what is the purpose of this?
     {
         get { return _character; }
         set { _character = value is Character character ? character : null; }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Building : Unit
 {
     #region Universal Variables
-
     BuildingData _buildingData;
     BuildingPlacement _placement;
     List<Material> _materials;
@@ -75,9 +74,9 @@ public class Building : Unit
     }
     #endregion
 
-    public override void Place()
+    public override void PlaceCost()
     {
-        base.Place();
+        base.PlaceCost();
         _placement = BuildingPlacement.FIXED;
         SetMaterials();
     }

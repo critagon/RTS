@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 55d89ca71e37976429929a972f934e22, type: 3}
   m_Name: Tower
-  m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  m_EditorClassIdentifier: 
   prefab: {fileID: 6215363435305957453, guid: edca38c2535828d458fa17bf1d41d539, type: 3}
   code: Tower
   unitName: Tower
   description: Tower
-  HP: 0
-  maxHP: 0
+  HP: 100
+  maxHP: 100
   cost:
   - code: wood
-    amount: 50
-  - code: stone
-    amount: 25
+    amount: 100

@@ -6,14 +6,14 @@ public class UnitManager : MonoBehaviour
 {
     #region Setup
     #region Variables
-    protected virtual Unit Unit { get; set; } //? why get set?
+    public virtual Unit Unit { get; set; } //? why get set?
 
     protected Dictionary<int, GameObject> selectedUnits = Globals.SELECTED_UNITS;
     public int id;
 
     GameObject hoverObject;
 
-    protected virtual bool IsActive() 
+    protected virtual bool IsActive()
     {
         return true;
     }
@@ -26,13 +26,13 @@ public class UnitManager : MonoBehaviour
 
     protected virtual bool CanBeSelected()
     {
-        if (IsActive() == false) return false; 
+        if (IsActive() == false) return false;
         else return true;
     }
 
     public bool isPlacingBuilding;
 
-    protected Transform healthbarCanvas; 
+    protected Transform healthbarCanvas;
     protected GameObject _healthbar;
 
     protected BoxCollider boxCollider;
@@ -147,7 +147,7 @@ public class UnitManager : MonoBehaviour
         {
             transform.Find("SelectionCircle").gameObject.SetActive(false);
             HealthbarDestroy();
-        }     
+        }
     }
     protected void HealthbarCreate()
     {
@@ -184,47 +184,56 @@ public class UnitManager : MonoBehaviour
         if (!selectedUnits.ContainsKey(id))
         {
             Globals.SELECTED_UNITS.Add(id, selection);
+            SelectEvent();
         }
+    }
 
+    public void ShiftSelect(GameObject selection)
+    {
+        if (!selectedUnits.ContainsKey(id))
+        {
+            Globals.SELECTED_UNITS.Add(id, selection);
+            SelectEvent();
+        }
+    }
+
+    public virtual void MarqueeSelect(GameObject selection)
+    {
+        if ((!selectedUnits.ContainsKey(id)))
+        {
+            Globals.SELECTED_UNITS.Add(id, selection);
+            SelectEvent();
+        }
+    }
+
+    public void SelectEvent()
+    {
         EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
     }
 
-        public void ShiftSelect(GameObject selection)
+    public void Deselect1(GameObject selection)
+    {
+        if (selectedUnits.ContainsKey(id))
         {
-            if (!selectedUnits.ContainsKey(id))
-            {
-                Globals.SELECTED_UNITS.Add(id, selection);
-            }
-
-            EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
+            selectedUnits.Remove(id);
+            DeselectEvent();
         }
+    }
 
-        public virtual void MarqueeSelect(GameObject selection)
-        {
-            if ((!selectedUnits.ContainsKey(id)))
-            {
-                Globals.SELECTED_UNITS.Add(id, selection);
-            }
-
-            EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
-        }
-
-        public void Deselect1(GameObject selection)
-        {
-            if (selectedUnits.ContainsKey(id))
-            {
-                selectedUnits.Remove(id);
-            }
-
-            EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
-        }
-
-        public void DeselectAll()
+    public void DeselectAll()
+    {
+        if (selectedUnits.Count > 0)
         {
             selectedUnits.Clear();
-            EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+            DeselectEvent();
         }
-        #endregion
     }
+
+    public void DeselectEvent()
+    {
+        EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+    }
+    #endregion
+}
 
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Terrain Feature", menuName = "ScriptableObjects/Terrain Feature", order = 1)]
+[CreateAssetMenu(fileName = "Terrain Feature", menuName = "Scriptable Objects/Terrain Feature", order = 1)]
 public class FeatureData : ScriptableObject
 {
     public GameObject prefab;

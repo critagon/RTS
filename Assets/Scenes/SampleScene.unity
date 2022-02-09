@@ -1571,8 +1571,8 @@ MonoBehaviour:
   buildingButtonPrefab: {fileID: 1876390384253508200, guid: 1c2734ff8e2dafb4c8a04e054ae9ed98, type: 3}
   resourcesUIParent: {fileID: 733481424}
   gameResourceDisplayPrefab: {fileID: 5416423820144269893, guid: 22c2b941f35385e4d84191c30d56c69e, type: 3}
-  selectionDisplayParent: {fileID: 1815574241}
-  selectionDisplayPrefab: {fileID: 5112472009556553969, guid: 70829f6e90039144a829515a3536c0ea, type: 3}
+  selectedUnitsListParent: {fileID: 1815574241}
+  selectedUnitDisplayPrefab: {fileID: 5112472009556553969, guid: 70829f6e90039144a829515a3536c0ea, type: 3}
 --- !u!114 &1319315233
 MonoBehaviour:
   m_ObjectHideFlags: 0

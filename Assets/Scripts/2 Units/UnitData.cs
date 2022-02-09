@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Unit", menuName = "Scriptable Objects", order = 2)]
 public class UnitData : ScriptableObject
 {
     public GameObject prefab;
@@ -25,26 +26,9 @@ public class UnitData : ScriptableObject
     }
 }
 
-[CreateAssetMenu(fileName = "Character", menuName = "ScriptableObjects/Unit/Character", order = 1)]
-public class CharacterData : UnitData
-{
-    //public List<UnitProduction> unitProduction;
-    //public List<BuildingProduction> buildingProduction;
-}
 
-[CreateAssetMenu(fileName = "Building", menuName = "ScriptableObjects/Unit/Building", order = 2)]
-public class BuildingData : UnitData
-{
-    //public List<UnitProduction> unitProduction;
-    //public List<BuildingProduction> buildingProduction;
-}
 
-[System.Serializable]
-public class ResourceValue //make into separate script if there are problems
-{
-    public string code = "";
-    public int amount = 0;
-}
+
 
 
 
