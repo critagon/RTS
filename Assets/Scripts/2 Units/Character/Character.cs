@@ -7,17 +7,28 @@ public class Character : Unit
     CharacterData _characterData;
     CharacterManager characterManager;
 
+
+    /*public Character(CharacterData characterData) : this(characterData, new List<ResourceValue>())
+    {
+    } //no production
+
     public Character(CharacterData characterData, List<ResourceValue> production) : base(characterData, production)
     {
         _characterData = characterData;
         characterManager = _transform.GetComponent<CharacterManager>();
 
         _currentHealth = characterData.HP;
-    }
+    }*/
 
-    public Character(CharacterData characterData) : this(characterData, new List<ResourceValue>()) 
+   
+
+    public Character(CharacterData characterData) : base(characterData)
     {
-    } //no production
+        _characterData = characterData;
+        characterManager = _transform.GetComponent<CharacterManager>();
+
+        _currentHealth = characterData.HP;
+    }
 
     public int DataIndex
     {

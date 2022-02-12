@@ -6,7 +6,8 @@ public class UnitManager : MonoBehaviour
 {
     #region Setup
     #region Variables
-    public virtual Unit Unit { get; set; } 
+    public virtual Unit Unit { get; set; }
+    UnitData unitData { get; set; } //do i need to do the properties with the UnitData? Also, do I need UnitData here?
 
     protected Dictionary<int, GameObject> selectedUnits = Globals.SELECTED_UNITS;
     public int id;
@@ -50,14 +51,20 @@ public class UnitManager : MonoBehaviour
 
     private void Awake()
     {
+        print("Unit in UM.Awake is: " + Unit);
         id = gameObject.GetInstanceID();
+        /*if (Unit == null)
+        {
+            Initialize(Unit);
+        }*/
     }
 
-    public void Initialize(Unit unit)
+    protected virtual void Initialize(Unit unit)
     {
         boxCollider = GetComponent<BoxCollider>(); //why is this necessary?
-        Unit = unit; //what is this for?
+        Unit = new Unit(unitData); 
     }
+
     #endregion
     #endregion
 
@@ -206,15 +213,6 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    public void SelectEvent()
-    {
-        print("Unit in UnitManager is: " + Unit);
-        if (Unit != null)
-        {
-            EventManager.TriggerTypedEvent("SelectUnit", new CustomEventData(Unit));
-        }
-    }
-
     public void Deselect1(GameObject selection)
     {
         if (selectedUnits.ContainsKey(id))
@@ -233,11 +231,21 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    public void DeselectEvent()
+    public void SelectEvent()
     {
+        print("Unit in UnitManager.SelectEvent is: " + Unit); //to debug wheter there is an instance of unit
         if (Unit != null)
         {
-            EventManager.TriggerTypedEvent("DeselectUnit", new CustomEventData(Unit));
+            EventManager.TriggerTypedEvent("OnSelectUnit", new CustomEventData(Unit));
+        }
+    }
+
+    public void DeselectEvent()
+    {
+        print("Unit in UnitManager.DeselectEvent is: " + Unit); //to debug wheter there is an instance of unit
+        if (Unit != null)
+        {
+            EventManager.TriggerTypedEvent("OnDeselectUnit", new CustomEventData(Unit));
         }
     }
     #endregion

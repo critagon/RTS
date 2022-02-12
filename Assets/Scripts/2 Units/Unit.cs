@@ -12,7 +12,8 @@ public class Unit
     protected int upgradeLevel;
     protected List<ResourceValue> _production;
 
-    public Unit(UnitData unitData) : this(unitData, new List<ResourceValue>() { }) { } 
+    
+    /*public Unit(UnitData unitData) : this(unitData, new List<ResourceValue>() { }) { }
 
     public Unit(UnitData unitData, List<ResourceValue> production)
     {
@@ -26,6 +27,19 @@ public class Unit
         uid = System.Guid.NewGuid().ToString();
         upgradeLevel = 1;
         _production = production;
+    }*/
+
+    public Unit(UnitData unitData) //simplified for now for debugging purposes, so no production list here.
+    {
+        _unitData = unitData;
+        _currentHealth = unitData.HP;
+
+        GameObject getGameObject = GameObject.Instantiate(unitData.prefab) as GameObject;
+        _transform = getGameObject.transform;
+        _transform.GetComponent<UnitManager>();
+
+        uid = System.Guid.NewGuid().ToString();
+        upgradeLevel = 1;
     }
 
     public void Upgrade()
@@ -44,7 +58,7 @@ public class Unit
         _transform.position = position;
     }
 
-    public virtual void PlaceCost()
+    public virtual void Place()
     {
         _transform.GetComponent<BoxCollider>().isTrigger = false; //remove "is trigger" flag from box collider to allow for collisions with units
 

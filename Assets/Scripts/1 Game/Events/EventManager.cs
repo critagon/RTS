@@ -96,6 +96,4 @@ public class EventManager : MonoBehaviour
         if (instance._typedEvents.TryGetValue(eventName, out evt))
             evt.Invoke(data);
     }
-
-
 }

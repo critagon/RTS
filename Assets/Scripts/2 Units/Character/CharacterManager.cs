@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : UnitManager
 {
     public Transform parent;
     Character _character;
+    public CharacterData characterData; //do I need to declare CharacterData here? I set it in inspector in the prefabs.
 
     public override Unit Unit 
     {
         get { return _character; }
-        set { _character = value is Character character ? character : null; }
+        set { _character = value is Character character ? character : null; } //if _character is a character set to building? otherwise set to null? Not sure what this means?
     }
 
     void Update()
@@ -23,6 +22,19 @@ public class CharacterManager : UnitManager
 
         UpdateUnitDisplay();
     }
+
+    /*private void Awake()
+    {
+        if (_character == null)
+        {
+            Initialize(_character);
+        }*
+    }
+
+    protected override void Initialize(Character character)
+    {
+        _character = new Character(characterData);
+    }*/
 
     protected override void UpdateUnitDisplay()
    {

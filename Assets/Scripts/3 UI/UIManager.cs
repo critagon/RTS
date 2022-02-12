@@ -15,10 +15,8 @@ public class UIManager : MonoBehaviour
     public Transform resourcesUIParent;
     public GameObject gameResourceDisplayPrefab;
 
-    //public Transform selectionDisplayParent;
-    //public GameObject selectionDisplayPrefab;
-    public Transform selectedUnitsListParent;
-    public GameObject selectedUnitDisplayPrefab;
+    public Transform selectionDisplayParent;
+    public GameObject selectionDisplayPrefab;
 
     Dictionary<string, Text> resourceText;
 
@@ -31,8 +29,8 @@ public class UIManager : MonoBehaviour
         EventManager.AddListener("UpdateResourceTexts", OnUpdateResourceText);
         EventManager.AddListener("CheckBuildingButtons", OnCheckBuildingButtons);
 
-        EventManager.AddTypedListener("SelectUnit", OnSelectUnit);
-        EventManager.AddTypedListener("DeselectUnit", OnDeselectUnit);
+        EventManager.AddTypedListener("OnSelectUnit", OnSelectUnit);
+        EventManager.AddTypedListener("OnDeselectUnit", OnDeselectUnit);
     }
 
     private void OnDisable()
@@ -40,8 +38,8 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveListener("UpdateResourceTexts", OnUpdateResourceText);
         EventManager.RemoveListener("CheckBuildingButtons", OnCheckBuildingButtons);
 
-        EventManager.RemoveTypedListener("SelectUnit", OnSelectUnit);
-        EventManager.RemoveTypedListener("DeselectUnit", OnDeselectUnit);
+        EventManager.RemoveTypedListener("OnSelectUnit", OnSelectUnit);
+        EventManager.RemoveTypedListener("OnDeselectUnit", OnDeselectUnit);
     }
 
     void Awake()
@@ -49,7 +47,7 @@ public class UIManager : MonoBehaviour
         healthbarCanvas = GameObject.Find("Healthbars").transform;
 
         #region Building Buttons      
-        buildingPlacer = GetComponent < BuildingPlacer>();
+        buildingPlacer = GetComponent <BuildingPlacer>();
         buildingButtons = new Dictionary<string, Button>();
 
         //create buttons for each building type
@@ -130,39 +128,43 @@ public class UIManager : MonoBehaviour
 
     public void AddSelectedUnitToSelectionDisplay(Unit unit)
     {
-        // if there is another unit of the same type already selected,
-        // increase the counter
-        print("Unit in UIManager is: " + unit);
-        Transform alreadyInstantiatedChild = selectedUnitsListParent.Find(unit.Code);
-        if (alreadyInstantiatedChild != null)
+        print("Unit in UIManager is: " + unit); //to debug whether unit is null or not before starting.
+        if (unit != null)
         {
-            Text t = alreadyInstantiatedChild.Find("Count").GetComponent<Text>();
-            int count = int.Parse(t.text);
-            t.text = (count + 1).ToString();
+            Transform alreadyInstantiatedChild = selectionDisplayParent.Find(unit.Code);
+            if (alreadyInstantiatedChild != null)
+            {
+                Text text = alreadyInstantiatedChild.Find("Count").GetComponent<Text>();
+                int count = int.Parse(text.text);
+                text.text = (count + 1).ToString();
+            }
+            else
+            {
+                GameObject gameObj = Instantiate(selectionDisplayPrefab) as GameObject;
+                gameObj.name = unit.Code;
+                Transform objTransform = gameObj.transform;
+                objTransform.Find("Count").GetComponent<Text>().text = "1";
+                objTransform.Find("Name").GetComponent<Text>().text = unit.unitData.unitName;
+                objTransform.SetParent(selectionDisplayParent);
+            }
         }
-        // else create a brand new counter initialized with a count of 1
-        else
-        {
-            GameObject g = Instantiate(selectedUnitDisplayPrefab) as GameObject;
-            g.name = unit.Code;
-            Transform t = g.transform;
-            t.Find("Count").GetComponent<Text>().text = "1";
-            t.Find("Name").GetComponent<Text>().text = unit.unitData.unitName;
-            t.SetParent(selectedUnitsListParent);
-        }
+        
     }
 
     public void RemoveSelectedUnitFromSelectionDisplay(string code)
     {
-        Transform listItem = selectedUnitsListParent.Find(code);
-        if (listItem == null) return;
-        Text t = listItem.Find("Count").GetComponent<Text>();
-        int count = int.Parse(t.text);
-        count -= 1;
-        if (count == 0)
-            DestroyImmediate(listItem.gameObject);
-        else
-            t.text = count.ToString();
+        if (code != null)
+        {
+            Transform listItem = selectionDisplayParent.Find(code);
+            if (listItem == null) return;
+            Text text = listItem.Find("Count").GetComponent<Text>();
+            int count = int.Parse(text.text);
+            count -= 1;
+            if (count == 0)
+                DestroyImmediate(listItem.gameObject);
+            else
+                text.text = count.ToString();
+        }
     }
 
     #endregion

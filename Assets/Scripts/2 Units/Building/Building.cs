@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,10 +19,28 @@ public class Building : Unit
         CONSTRUCTING,
     };
 
-    public Building(BuildingData buildingData) : this(buildingData, new List<ResourceValue>() { }) { } //no production
+    /*public Building(BuildingData buildingData) : this(buildingData, new List<ResourceValue>() { }) {
 
-    public Building(BuildingData buildingData, List<ResourceValue> production) :
+    } //no production */
+
+    /*public Building(BuildingData buildingData, List<ResourceValue> production) :
         base(buildingData, production)
+    {
+        _buildingData = buildingData;
+        buildingManager = _transform.GetComponent<BuildingManager>();
+
+        _currentHealth = buildingData.HP;
+
+        _materials = new List<Material>();
+        foreach (Material material in _transform.Find("Mesh").GetComponent<Renderer>().materials)
+        {
+            _materials.Add(new Material(material));
+        }
+        SetMaterials();
+    }*/
+
+
+    public Building(BuildingData buildingData) : base(buildingData)
     {
         _buildingData = buildingData;
         buildingManager = _transform.GetComponent<BuildingManager>();
@@ -74,9 +91,9 @@ public class Building : Unit
     }
     #endregion
 
-    public override void PlaceCost()
+    public override void Place()
     {
-        base.PlaceCost();
+        base.Place();
         _placement = BuildingPlacement.FIXED;
         SetMaterials();
     }

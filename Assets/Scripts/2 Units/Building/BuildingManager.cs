@@ -1,14 +1,16 @@
 using UnityEngine;
 
+
 public class BuildingManager : UnitManager
 #region Universal Variables and Setup
 {
-    Building _building;
+    public Building _building;
+    public BuildingData buildingData; //do I need to declare BuildingData here? I set it in inspector in the prefabs.
 
     public override Unit Unit 
     {
         get { return _building; }
-        set { _building = value is Building building ? building : null; } //_building is a building set to building? otherwise set to null
+        set { _building = value is Building building ? building : null; } //if _building is a building set to building? otherwise set to null? Not sure what this means?
     }
 
     int _nCollisions = 0;
@@ -25,7 +27,6 @@ public class BuildingManager : UnitManager
         if (_building == null)
         {
             whatType = "Pre-placed";
-            //how to initialize pre-placed buildings?
         }
 
         if (buildingParent == null)

@@ -259,10 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678c146dd6f62eb409aeb7b46e518d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isABuilding: 0
-  canBeSelected: 1
-  isHoveringOver: 0
-  isNotPlacingBuilding: 0
+  UnitData: {fileID: 11400000, guid: a2473097e437e2841ac3bde9fa5235f4, type: 2}
+  id: 0
+  isPlacingBuilding: 0
 --- !u!114 &4330798818065093826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,4 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63eaf7cde610e6a45aae33976b653b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnitData: {fileID: 11400000, guid: a2473097e437e2841ac3bde9fa5235f4, type: 2}
+  id: 0
+  isPlacingBuilding: 0
   parent: {fileID: 0}
+  characterData: {fileID: 11400000, guid: a2473097e437e2841ac3bde9fa5235f4, type: 2}

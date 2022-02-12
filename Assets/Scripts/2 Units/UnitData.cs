@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Unit", menuName = "Scriptable Objects/Unit", order = 2)]
+[CreateAssetMenu(fileName = "Unit", menuName = "Scriptable Objects/Unit", order = 2)] //do I need a separate unit asset menu? I have characters and buildings, don't think there would be a scenario where an object is neither.
+[System.Serializable]
+
 public class UnitData : ScriptableObject
 {
     public GameObject prefab;
@@ -20,8 +22,12 @@ public class UnitData : ScriptableObject
     public bool CanBuy()
     {
         foreach (ResourceValue resource in cost)
+
             if (Globals.GAME_RESOURCES[resource.code].Amount < resource.amount)
+            {
                 return false;
+            }
+
         return true;
     }
 }
